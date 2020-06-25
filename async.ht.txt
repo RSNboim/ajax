@@ -1,0 +1,69 @@
+<div>
+    <div>
+        <button id ="btn-async">async process</button>
+
+    </div>
+<ul>
+<li id ="ul-async"></li>
+
+
+</ul>
+
+
+
+
+
+</div>
+
+<script>
+    let CreateListWithTime = (any) => {
+
+        let currDate = new Date();
+        return currDate.getMilliseconds;
+    }
+
+let list =   { 
+    a: function(){return "a";},
+   b: function(){return "b";},
+   c :function(){return "c";},
+  d: function(){return "d";},
+   
+    e: function(callback){ setTimeout(() =>{callback('e')},250);},
+    f: function(callback){ setTimeout(() =>{callback('f')},250);},
+    g: function(callback){ setTimeout(() =>{callback('g')},250);},
+   h: function(callback){ setTimeout(() =>{callback('h')},250);},
+   }
+
+
+let asyncUl = document.querySelector("#ul-async")
+ document.querySelector("#btn-async").onClick = function(){
+list.e (function(msg){
+    asyncUl.innerHTML +=/CreateListWithTime(msg);
+)};
+list.f (function(msg){
+    asyncUl.innerHTML +=/CreateListWithTime(msg);
+});
+list.g (function(msg){
+    asyncUl.innerHTML +=/CreateListWithTime(msg);
+)};
+list.h (function(msg){
+    asyncUl.innerHTML +=/CreateListWithTime(msg);
+});
+
+
+
+ }
+
+
+
+
+
+
+
+
+}
+
+
+
+
+</script>
