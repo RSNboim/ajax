@@ -1,55 +1,60 @@
 <div class="wraper">
-    <div class="txt">
-    </div>
-    <div class="ts">
-    </div>
-    <div class="json">
-    </div>
-    <div class="html">
-    </div>
-</div>
+	<div class="txt">
+	</div>
+	<div class="js">
+	</div>
+	
+	<div class="html">
+	</div>
+
+
+<table id="table1">
+	<thead>
+		<th>id</th>
+		<th>Firstname</th>
+		<th>Lastname</th>
+		<th>Email</th>
+		<th>Gender</th>
+	</thead>
+	<tbody id="table">
+	</tbody>
+</table></div>
 <script>
 
-(function loadDoc(){
-let xhttp = new XMLHttpRequest();
-xhttp.onreadystatechange = function(){
-    if (this.readyState == 4 && this.status == 200) {
-				console.log(this.responseText, this);
-				document.querySelector(".txt").innerHTML = this.responseText;
-			}
-		};
-		xhttp.open("GET", "https://raw.githubusercontent.com/bresleveloper/db/master/ajax/say%20ho.txt");
-		xhttp.send();
-		console.log("after send");
+	function smartLoadDoc(url) {
+		let xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function () {
+			if (this.readyState == 4 && this.status == 200) {		
+				
+					let jsonobj = JSON.parse(this.responseText);
+					for (const i of jsonobj) {
+						let tamplate = document.querySelector("#table1").innerHTML += `<tr>
+          <td>${i.id}</td>
+          <td>${i.first_name}</td>
+          <td>${i.last_name}</td>
+          <td>${i.email}</td>
+          <td>${i.gender}</td>
+        </tr>`;
+					}
+				}
 
-	})();
-
-	function smartLoadDoc(url, targetEl){
-		var xhttp = new XMLHttpRequest();
-		xhttp.onreadystatechange = function() {
-			if (this.readyState == 4 && this.status == 200) {
-				targetEl.innerHTML = this.responseText;
-				//jsonResults = JSON.parse(this.responseText)
-				//for on jsonResults.students
-				//redner to html <li>
 			}
-		};
+		
 		xhttp.open("GET", url);
 		xhttp.send();
-	}
+	};
 
 	smartLoadDoc(
-		"https://raw.githubusercontent.com/bresleveloper/db/master/ajax/someDB.json", 
-		document.querySelector(".json"))
+		"https://raw.githubusercontent.com/BetzalelKenig/web-projects/master/ajax/random-persons.json",
+		)
 
-	smartLoadDoc(
-		"https://raw.githubusercontent.com/bresleveloper/db/master/ajax/someDB.js", 
-		document.querySelector(".js"))
+		// smartLoadDoc(
+		// 	"https://raw.githubusercontent.com/bresleveloper/db/master/ajax/someDB.js",
+		// 	document.querySelector(".js"))
 
-	smartLoadDoc(
-		"https://raw.githubusercontent.com/bresleveloper/db/master/ajax/comp-calc.html", 
-		document.querySelector(".html"))
-
+		// smartLoadDoc(
+		// 	"https://raw.githubusercontent.com/bresleveloper/db/master/ajax/comp-calc.html",
+		// 	document.querySelector(".html"))
 
 
 
